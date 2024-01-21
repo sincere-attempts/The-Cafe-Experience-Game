@@ -12,29 +12,30 @@ import random
 
 menu = ['latte', 'tea', 'coffee']
 
-def displayIntro():
+
+def harmoniousInterlude(): #inserts a 2 second pause and a blank line, for improved pacing of the script
+    time.sleep(2)
+    print()
+    
+def displayIntro(): #Welcomes the player to the game and sets up their character name, allows them to choose to start game or exit game
     print('Welcome to The Cafe Experience.')
-    print()
-    time.sleep(2)
+    harmoniousInterlude()
     print('Now, without leaving your home, you can experience the joy of The Cafe!')
-    time.sleep(2)
-    print()
+    harmoniousInterlude()
     print('Please choose your character name')
     global CharacterName
     CharacterName = input()
-    time.sleep(2)
+    harmoniousInterlude()
     print('That\'s right, ' + CharacterName + '. I remember now.')
-    time.sleep(2)
-    print()
+    harmoniousInterlude()
     print('Are you ready to enter The Cafe?')
     choice = input()
     if (choice == 'no'):
             ExitGame()
     else:
-            time.sleep(2)
+            harmoniousInterlude()
             print('You enter The Cafe.')
-            time.sleep(2)
-            print()
+            harmoniousInterlude()
             print('Remember, you can leave The Cafe at any time by saying, \'I want to leave The Cafe.\'')
             time.sleep(2)
             print('...')
@@ -45,18 +46,17 @@ def displayIntro():
             
             enterCafe()
 
-def enterCafe():
-    print()
+def enterCafe(): #Dialogue where barista welcomes the player by their chosen name as they walk in
+    harmoniousInterlude()
     print()
     print('BARISTA: "Hiii, welcome in!"')
-    time.sleep(2)
-    print()
+    harmoniousInterlude()
     print('"Oh! ' + CharacterName + '! I didn\'t recognize you!"')
     time.sleep(2)
 
     approachCounter()
 
-def approachCounter():
+def approachCounter(): #Allows player to order their "usual" or see the menu for more options (which calls the orderingDrink function)
     global current_drink
     print()
     print('"What would you like to order? Your usual? Or do you need to see the menu?"')
@@ -77,14 +77,13 @@ def approachCounter():
         print('I\'m sorry, I don\'t understand.')
         approachCounter()
 
-def orderingDrink():
+def orderingDrink(): #Takes the player's drink order input and confirms what they want to order, allowing them to change their mind or calling the makeDrink function if they're ready
     global current_drink
     done = False
-    time.sleep(2)
-    print()
+    harmoniousInterlude()
     print('So what looks good?')
     current_drink = input()
-    time.sleep(2)
+    harmoniousInterlude()
     print('"Great, you want to order a "' + current_drink + '"?"')
     while (done == False):
         if input() == 'yes':
@@ -93,49 +92,37 @@ def orderingDrink():
             makeDrink()
         else:
             orderingDrink()
-        
-        
-def creamAndSugar():
-            additive = input('Would you like cream, sugar, or both?')
-            if (additive == 'both'):
-                    print("Great choice!")
+          
 
 def makeDrink():
-    time.sleep(2)
-    print()
+    harmoniousInterlude()
     print('BARISTA: "One "' + current_drink + '" coming right up!"')
     if (current_drink == 'coffee'):
-        print()
-        time.sleep(2)
+        harmoniousInterlude()
         print('"Let me just grab that for you real fast!"')
         time.sleep(20)
         print('"Here you go!"')
         ExitGame()
     if (current_drink == 'tea'):
-        print()
-        time.sleep(2)
+        harmoniousInterlude()
         print('It\'ll just take about 4 minutes to steep.')
         time.sleep(240)
         print()
         print('All done! Here you go, have a great day,' + CharacterName + '.')
         ExitGame()
     if (current_drink == 'latte'):
-        print()
-        time.sleep(2)
+        harmoniousInterlude()
         print('"You just have a seat, I\'ll call your name when it\'s done."')
-        time.sleep(3)
-        print()
+        harmoniousInterlude()
         print('This will take a normal amount of time.')
         time.sleep(180)
         print()
         print('"Hey, ' + CharacterName + ', your drink is ready!"')
         ExitGame()
     else:
-        print()
-        time.sleep(2)
+        harmoniousInterlude()
         print('"I\'ve never made a "' + current_drink + '" before, but I\'ll do my best!"')
-        time.sleep(2)
-        print()
+        harmoniousInterlude()
         print('"Just have a seat and I\'ll call your name when it\'s ready!"')
         time.sleep(60)
         print()
@@ -143,14 +130,16 @@ def makeDrink():
         time.sleep(2)
         ExitGame()
         
-def readMenu():
+def readMenu(): #Prints a menu of all drinks available
     print('      ~~~~MENU~~~~')
     print(menu)
-      
+
+##def updateMenu(): #Adds new drinks to the menu
+     menu = (menu.append(input))
+     return menu
 
 def ExitGame():
-    time.sleep(2)
-    print()
+    harmoniousInterlude()
     print('Do you want to leave The Cafe?')
     choice = input()
     if (choice == 'I want to leave The Cafe.') or (choice == 'yes'):
